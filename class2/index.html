@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1. canvas_element</title>
+  <style>
+    /* #can {
+      width: 500px;
+      height: 500px;
+      background: orange;
+    } */
+  </style>
+</head>
+<body>
+
+  <!--
+   canvas 最大画布尺寸
+  -->
+
+  <!-- 
+    浏览器需要在 canvas 画布元素上，进行图形化绘制
+    1. canvas 标签是 HTML5 版本新增的标签
+    2. 配合 canvas 标签元素，使用 HTML5 Javascript API (canvas API) 来绘图形
+   -->
+
+   <!-- 
+    canvas 标签属性
+    1. id => JavaScript 要获取到 canvas 画布对象，并通过该 DOM 对象来创建绘制图形的上下文（绘制的方法和属性）
+    2. width => 画布的宽度 默认值 300px
+    3. height => 画布的高度 默认值 150px
+    注意： 画布的大小决定了 Canvas API 绘制图形的边界   
+  -->
+
+  <!-- 使用 canvas 元素的宽高属性定义画布大小 （推荐） -->
+  <!-- canvas 是有兼容性的，不兼容就会渲染 canvas 标签内部的内容 -->
+  <canvas id="can" width="500" height="500">
+    您当前使用的浏览器不支持 canvas 元素
+  </canvas>
+
+
+  <!-- 使用 CSS 定义尺寸可能会导致绘制的内容变形 -->
+  <!-- <canvas id="can"></canvas> -->
+
+  <script>
+    // 1. 获取画布的元素 dom元素变量前面加小写的o, object
+    const oCan = document.getElementById('can'); 
+    // console.log(Object.prototype.toString.call(oCan));// [object HTMLCanvasElement]
+
+    // 2. 使用当前画布对象，创建一个绘制图形的上下文
+    // ctx => context
+    // 如果无法创建上下文，name 则返回 null
+
+    /**
+     * 参数 contextType, contextAttributes
+     * 
+     * contextType: 
+     *  1. 2d => 创建 2d 渲染的上下文
+     *    绘制接口: CanvasRenderingContext2D => 所有属性和方法
+     * 
+     *  2. webgl/webgl2 => 创建 3d 渲染的上下文
+     *    绘制接口： WebGL(2)RenderingContext 
+     *    注意: webgl2 是 webgl 的升级版本
+     * 
+     *  3. bitmaprenderer => 创建ImageBitMap 替换 canvas 的上下文
+     *    绘制接口: ImageBitMapRendereringContext
+     * 
+     * contextAttribute:
+     *    alpha: 默认 true
+     *    设置 false: canvas 背景不图透明，加速渲染透明的图像和图形
+     */
+
+     /**
+      * ctx => 属性
+      * CanvasRenderingContext2D => 方法 <= Canvas API 的一部分
+      */
+    const ctx = oCan.getContext('2d');
+
+    ctx.strokeRect(100, 100, 150, 100);
+  </script>
+  
+  
+  <script>
+    // 测试 css 变形
+    // const oCan = document.getElementById('can');
+    // const ctx = oCan.getContext('2d');
+    // ctx.strokeRect(10, 10, 200, 200);
+  </script>
+
+  
+</body>
+</html>
